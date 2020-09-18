@@ -44,5 +44,5 @@ Now we should be ready to add a **Script** component to the Player and get into 
 
 ## Step 2: First Steps
 Remember in Step 0 where we created a Folder named "Scripts"? This is where it comes into play. Open up that Scripts Folder and we'll now create our first Unity Script. You'll notice that the creation of a Script immediately prompts you to type in its name:
-> Unlike most GameObjects and Assets, Scripts aren't easily renamed. Keep this in mind when creating Scripts. (If you're into programming then you might understand that this is because Scripts are basically classes.)
+> Unlike most GameObjects and Assets, Scripts aren't easily renamed. Keep this in mind when creating Scripts. (If you're into programming then you might understand that this is because Scripts are basically classes.)  
 You'll want to name this first script we create "PlayerControl". If you accidentally named it something different then I'd recommend deleting the Script and creating a new one. Your editor might freeze a bit, and it might seem to glitch out when this happens. This is most likely because Microsoft Visual Studio will be opening in the background as we create our Script.
