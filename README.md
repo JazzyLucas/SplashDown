@@ -5,10 +5,10 @@ This readme will serve as full documentation on the step-by-step process of crea
 Contact JazzyLucas#0749 via Discord if you have any questions.
 
 ## Preface
-I won't cover Unity Hub installation or Unity Editor installation, but here's that if you need it: https://docs.unity3d.com/Manual/GettingStartedInstallingHub.html
-In this tutorial I use Unity 2020.1.6f1. Earlier versions of Unity should still work, but they will look very different.
-A basic understanding of C# with Microsoft Visual Studio is assumed.
-A basic intuition of Unity Editor and its API is *not* assumed, this tutorial should assist with that.
+* I won't cover Unity Hub installation or Unity Editor installation, but here's that if you need it: https://docs.unity3d.com/Manual/GettingStartedInstallingHub.html
+* In this tutorial I use Unity 2020.1.6f1. Earlier versions of Unity should still work, but they will look very different.
+* A basic understanding of C# with Microsoft Visual Studio is assumed.
+* A basic intuition of Unity Editor and its API is *not* assumed, this tutorial should assist with that.
 
 ## Step 0: Project Creation and Assets Organization
 When you make the new project make sure you have the name set to something other than the default name. I'd also recommend making a subfolder within Documents for all of your Unity Projects, otherwise the default location can become cluttered. It's a good idea to use the 3D template as I'll be using it to start things off.<br />
