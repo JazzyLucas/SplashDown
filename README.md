@@ -7,7 +7,7 @@ Contact JazzyLucas#0749 via Discord if you have any questions.
 ## Preface
 * I won't cover Unity Hub installation or Unity Editor installation, but [here's that](https://docs.unity3d.com/Manual/GettingStartedInstallingHub.html)
 * In this tutorial I use Unity 2020.1.6f1. Earlier versions of Unity should still work, but the UI might look different.
-* A very basic understanding of C# with Microsoft Visual Studio is assumed.
+* A very basic understanding of C# or programming in general is assumed, but not necessarily needed.
 * A basic intuition of Unity Editor and its API is *not* assumed, this tutorial should assist with that.
 
 ## Step 0: Project Creation and Assets Organization
@@ -27,7 +27,7 @@ Next, left click each of these newly created **Empty** GameObjects you've made a
 If the transforms don't look similar just right click the **Transform** header and then Reset.
 A final step towards organizing the project is to Parent the **Main Camera** and **Directional Light** GameObjects for future organization. You can simply do this by dragging each one onto their respective **Empty** GameObjects. It should now look similar to this:<br />
 ![Image 0-6](https://i.imgur.com/UGsgkmE.png)<br/>
-The technique of parenting other GameObjects to other GameObjects is very useful when categorizing different things in a scene. It becomes very necessary when animating models and particles. From now on in this tutorial I won't go through the step-by-step process everytime I parent or create GameObjects as you can refer to it here.<br/>
+The technique of parenting GameObjects to other GameObjects is very useful when categorizing different things in a scene. It becomes very necessary when animating models and particles. From now on in this tutorial I won't go through the step-by-step process everytime I parent or create GameObjects as you can refer to it here.<br/>
 
 ## Step 1: Player and a Floor
 No programming quite yet, but let's get some more GameObjects into the scene. Create two new 3D Objects, a **Cube** and a **Capsule**. These are probably looking super small in your Scene, but that's just your perspective right now. If you hold right click in your scene's view and use your WASD keys then you can navigate around. It's fairly similar to any freecam used in most sandbox games, but you can watch [this video](https://www.youtube.com/watch?v=aCM3J4fG8B0) for some more help if you need it. Your scene should look something like this:<br/>
@@ -46,4 +46,24 @@ Now we should be ready to add a **Script** component to the Player and get into 
 Remember in Step 0 where we created a Folder named "Scripts"? Open up that Scripts Folder and we'll now create our first Unity Script. You'll notice that the creation of a Script immediately prompts you to type in its name:
 > Unlike most GameObjects and Assets, Scripts aren't easily renamed. Keep this in mind when creating Scripts. (If you're into programming then you might understand that this is because Scripts are basically classes.)
 
-You'll want to name this first script "PlayerControl". If you accidentally named it something different then I'd recommend deleting the Script and creating a new one. Once created, double click the Script to open it in the Integrated Development Environment called Microsoft Visual Studio. Your Unity editor might freeze a bit and look like it's glitching out when you open your script, don't freak out. This is most likely caused by Microsoft Visual Studio starting up (It's never been fixed or smoothed out, you'll just have to bear with it).
+You'll want to name this first script "PlayerControl". If you accidentally named it something different then I'd recommend deleting the Script and creating a new one. Once created, double click the Script to open it in the Integrated Development Environment called Microsoft Visual Studio. Your Unity editor might freeze a bit and look like it's glitching out when you open your script, don't freak out. This is most likely caused by Microsoft Visual Studio starting up (It's never been fixed or smoothed out, you'll just have to bear with it). Code-wise, this is what you should have so far in PlayerControl.cs (The PlayerControl script):
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControl : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
+```
