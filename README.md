@@ -67,3 +67,65 @@ public class PlayerControl : MonoBehaviour
     }
 }
 ```
+Before we even slap down some functioning code, it's time for a fancy outlining feature called regions! This isn't something that most online Unity tutorials teach but we're gonna be cooler than most Unity tutorials. Let's surround the 2 Monobehaviour methods **Start()** and **Update()** with `#region Monobehaviour Callbacks` and then create a new region above that (enclosing nothing for now) with `#region Private Fields`. It should looks something like this now:
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControl : MonoBehaviour
+{
+    #region Private Fields
+    #endregion
+
+    #region Monobehaviour Callbacks
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    #endregion
+}
+```
+What's useful about regions is that we can now close and open code blocks depending on what we want to see in when coding a script (the plus and minus symbols between the line number and your code on the left). Tidying up code like this isn't necessarily needed, but it really helps other people who review your code when it becomes long and complex. You can also use the Unity preferences to setup regions to be premade everytime you create a script ([Link Right Here](https://support.unity3d.com/hc/en-us/articles/210223733-How-to-customize-Unity-script-templates)). I'm going to go ahead and make a few more regions for preliminary purposes, but like I said, it's optional. My code will end up looking like this now:
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControl : MonoBehaviour
+{
+    #region Private Fields
+    #endregion
+
+    #region Monobehaviour Callbacks
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    #endregion
+
+    #region Public Methods
+    #endregion
+
+    #region Private Methods
+    #endregion
+}
+```
