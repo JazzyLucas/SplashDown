@@ -156,7 +156,7 @@ Next, we'll make a private method called **GetInput()** that returns void with t
         input.z = Input.GetAxis("Vertical");
     }
 ```
-We'll call **GetInput()** in the Update method, and we'll actually move the Player in a **FixedUpdate()** which is another Monobehaviour Callback just like **Update()** and **Start()** but that *isn't* called every frame. This is what it'll look like:
+We'll call **GetInput()** in the Update method, and we'll actually move the Player in a **FixedUpdate()** which is another Monobehaviour Callback just like **Update()** and **Start()** but it's called on a fixed timescale no matter what device is playing your game. This is what it'll look like:
 ```C#
     void FixedUpdate()
     {
@@ -169,3 +169,7 @@ We'll call **GetInput()** in the Update method, and we'll actually move the Play
         GetInput();
     }
 ```
+Save your script (Ctrl+S) and make sure Unity is able to compile it without problems (Go back to the Unity editor and if it's looking normal then it's good). Drag your PlayerControl script onto your Player GameObject. Now, we're going to reference your Player object in the PlayerControl script component that it now has. The way you do this is by dragging the entire Player GameObject onto the area that says "Player Object". It might be easier to see a quick recording of it being done:<br/>
+![vid1](https://i.gyazo.com/23314448e7425f4fbc74036ba08e3d67.mp4)<br/>
+Now, time for some action! Click the Play button located in the top middle of the Unity editor, use WASD to move your character, and watch him goooooo! Step 2 is complete!<br/>
+![vid2](https://i.gyazo.com/9f379fde2bfd4d2cac8d5981e3b82013.mp4)<br/>
