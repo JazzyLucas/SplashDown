@@ -132,16 +132,40 @@ public class PlayerControl : MonoBehaviour
     #endregion
 }
 ```
-From here on I will only upload snippets of code like functions and variables and expect you to be able to place them where you feel necessary depending on where you might have regions or what-not. With that being said, let's get into controlling our Player with this script. Let's add a new Private but Serializable Field that we'll use to reference our Player **GameObject**. We'll also make a private **Rigidbody** component. This is what these two will look like:
+From here on I will only upload snippets of code like functions and variables and expect you to be able to place them where you feel necessary depending on where you might have regions or what-not. With that being said, let's get into controlling our Player with this script. Let's add a new Private but Serializable Field that we'll use to reference our Player **GameObject**. We'll also make a private **Rigidbody** component. We'll also go ahead and make another private field but this one will be a fancy **Vector3** called input and defaulted to 0. This is what these will look like:
 ```C#
     [SerializeField] private GameObject playerObject;
     private Rigidbody playerRigidbody;
+    private Vector3 input = Vector3.zero;
 ```
 At runtime we'll get the **Rigidbody** from the Player so it's not necessary to make it a SerializeField. The method we'll use for that is the **Start()** method. Here's what that will look like right now:
 ```C#
     void Start()
     {
-        playerController = playerObject.GetComponent<CharacterController>();
+        playerRigidbody = playerObject.GetComponent<Rigidbody>();
     }
 ```
-Next, we'll make a private method called **MovePlayer()** with the parameters 
+Next, we'll make a private method called **GetInput()** that returns void with the no parameters. Here's what we'll fill the **GetInput()** function with:
+```C#
+    private void MovePlayer()
+    {
+        // Reset the vector each time we get input.
+        input = Vector3.zero;
+        // Using Horizontal and Vertical axes allows for use of controllers and easy control redefining with an Input Manager.
+        input.x = Input.GetAxis("Horizontal");
+        input.z = Input.GetAxis("Vertical");
+    }
+```
+We'll call **GetInput()** in the Update method, and we'll actually move the Player in a **FixedUpdate()** which is another Monobehaviour Callback just like **Update()** and **Start()** but that *isn't* called every frame. This is what it'll look like:
+```C#
+    void FixedUpdate()
+    {
+        playerRigidbody.MovePosition(playerRigidbody.position + input * 10 * Time.fixedDeltaTime);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        GetInput();
+    }
+```
