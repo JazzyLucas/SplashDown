@@ -7,7 +7,7 @@ Contact JazzyLucas#0749 via Discord if you have any questions.
 ## Preface
 * I won't cover Unity Hub installation or Unity Editor installation, but [here's that](https://docs.unity3d.com/Manual/GettingStartedInstallingHub.html)
 * In this tutorial I use Unity 2020.1.6f1. Earlier versions of Unity should still work, but the UI might look different.
-* A very basic understanding of C# or programming in general is assumed, but not necessarily needed.
+* A very basic understanding of C# or programming in general is assumed, but not necessarily needed for completion.
 * A basic intuition of Unity Editor and its API is *not* assumed, this tutorial should assist with that.
 
 ## Step 0: Project Creation and Assets Organization
@@ -36,9 +36,12 @@ Let's focus on the **Cube**. Rename it to "Floor" and we'll work on expanding it
 ![Image 1-1](https://i.imgur.com/GhjMph0.png)<br/>
 Now, you might notice that the **Capsule** is stuck inside the Floor, and we definitely don't want to leave it that way. Let's change the **Capsule**'s name to "Player" and its **Transform** to something like this:<br/>
 ![Image 1-2](https://i.imgur.com/mrUkT9s.png)<br/>
-We've made a Floor and put a Player above it, but these two GameObjects are not affected by physics at all (or better corrected, we need them affected by Unity's Physics. You can make your own physics system with scripting but that is for another day). In order to make physical entities affected by gravity, friction, forces, etc, we'll need to add a component called **Rigidbody**. Check out the Inspector of your GameObjects. There should be a button that says "Add Component". Click that Add Component button, search up "Rigidbody", and add it on to both your Player and Floor. While you're at it, you should also add a **Character Controller** component but only to your Player. So for example, your Player's Inspector should now look like this (*For the sake of visuals, I minimized some components by clicking the triangle symbol on their header*):<br/>
-![Image 1-3](https://i.imgur.com/aHtoDT5.png)<br/>
-One last thing before we move on to programming some real functionality... we need to fix the Floor a bit more. We've made both the Player and the Floor **Rigidbody**, but that also currently means that both the Floor and the Player will continuously fall endlessly through the void of space. We need to freeze the Floor's position that way the Player will actually fall onto the Floor and not the void. Navigate to the Floor's **Rigidbody** component, find the header called "Constraints" and check *all* of the boxes. Should look something like this:<br/>
+We've made a Floor and put a Player above it, but these two GameObjects are not affected by physics at all (or better corrected, we need them affected by Unity's Physics. You can make your own physics system with scripting but that is for another day). In order to make physical entities affected by gravity, friction, forces, etc, we'll need to add a component called **Rigidbody**. Check out the Inspector of your GameObjects. There should be a button that says "Add Component". Click that Add Component button, search up "Rigidbody", and add it on to both your Player and Floor.
+> If you've ever used Unity before, then you might've used a **CharacterController** component to control a player. Don't try to mix that with **Rigidbody** components because things will get messy *really quickly*. Usually you should only use one or the other. :)
+
+So for example, your Player's Inspector should now look like this (*For the sake of visuals, I minimized some components by clicking the triangle symbol on their header*):<br/>
+![Image 1-3](https://i.imgur.com/yvRL6jP.png)<br/>
+One last thing before we move on to programming some real functionality... we need to fix the Floor a bit more. We've added the **Rigidbody** component to both the Player and the Floor, but that also currently means that both the Floor and the Player will continuously fall endlessly through the void of space. We need to freeze the Floor's position that way the Player will actually fall onto the Floor and not the void. Navigate to the Floor's **Rigidbody** component, find the header called "Constraints" and check *all* of the boxes. Should look something like this:<br/>
 ![Image 1-4](https://i.imgur.com/le12rde.png)<br/>
 Now we should be ready to add a **Script** component to the Player and get into the nitty gritty of Unity.<br/>
 
@@ -95,7 +98,7 @@ public class PlayerControl : MonoBehaviour
     #endregion
 }
 ```
-What's useful about regions is that we can now close and open code blocks depending on what we want to see in when coding a script (the plus and minus symbols between the line number and your code on the left). Tidying up code like this isn't necessarily needed, but it really helps other people who review your code when it becomes long and complex. You can also use the Unity preferences to setup regions to be premade everytime you create a script ([Link Right Here](https://support.unity3d.com/hc/en-us/articles/210223733-How-to-customize-Unity-script-templates)). I'm going to go ahead and make a few more regions for preliminary purposes, but like I said, it's optional. My code will end up looking like this now:
+What's useful about regions is that we can now close and open code blocks depending on what we want to see in when coding a script (the plus and minus symbols between the line number and your code on the left). Tidying up code like this isn't necessarily needed, but it really helps other people who review your code when it becomes long and complex. You can also change the Unity editor files and setup regions to be premade everytime you create a script ([Link Right Here](https://support.unity3d.com/hc/en-us/articles/210223733-How-to-customize-Unity-script-templates)). I'm going to go ahead and make a few more regions for preliminary purposes, but like I said, it's optional. My code will end up looking like this now:
 ```C#
 using System.Collections;
 using System.Collections.Generic;
@@ -129,3 +132,16 @@ public class PlayerControl : MonoBehaviour
     #endregion
 }
 ```
+From here on I will only upload snippets of code like functions and variables and expect you to be able to place them where you feel necessary depending on where you might have regions or what-not. With that being said, let's get into controlling our Player with this script. Let's add a new Private but Serializable Field that we'll use to reference our Player **GameObject**. We'll also make a private **Rigidbody** component. This is what these two will look like:
+```C#
+    [SerializeField] private GameObject playerObject;
+    private Rigidbody playerRigidbody;
+```
+At runtime we'll get the **Rigidbody** from the Player so it's not necessary to make it a SerializeField. The method we'll use for that is the **Start()** method. Here's what that will look like right now:
+```C#
+    void Start()
+    {
+        playerController = playerObject.GetComponent<CharacterController>();
+    }
+```
+Next, we'll make a private method called **MovePlayer()** with the parameters 
