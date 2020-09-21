@@ -169,7 +169,7 @@ We'll call **GetInput()** in the Update method, and we'll actually move the Play
         GetInput();
     }
 ```
-Save your script (Ctrl+S) and make sure Unity is able to compile it without problems (Go back to the Unity editor and if it's looking normal then it's good). Drag your PlayerControl script onto your Player **GameObject**. Now, we're going to reference your Player **GameObject** in the PlayerControl script component. The way you do this is by dragging the entire Player **GameObject** onto the area that says "Player Object". It might be easier to see a quick gif of it being done:<br/>
+Save your script (Ctrl+S) and make sure Unity is able to compile it without problems (Go back to the Unity editor and if it's looking normal then it's good). Drag your PlayerControl script onto your Player GameObject. Now, we're going to reference your Player GameObject in the PlayerControl script component. The way you do this is by dragging the entire Player GameObject onto the area that says "Player Object". It might be easier to see a quick gif of it being done:<br/>
 ![vid1](https://i.imgur.com/NsjOhgL.gif)<br/>
 Now, time for some action! Click the Play button located in the top middle of the Unity editor, use WASD to move your character, and watch him goooooo! Step 2 is complete!<br/>
 ![vid2](https://i.imgur.com/pI3P7v5.gif)<br/>
