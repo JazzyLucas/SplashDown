@@ -223,7 +223,7 @@ Now, we haven't made the pool filling fully functional quite yet. We need a Unit
 This should be everything for the SplashDetection script, but we'll want some better visuals for the pool filling. We can do so by assigning it a new **Material**. I made mine look like green jello. I'd recommend having some fun with this part. You can make some really cool visuals just using a single material.<br/>
 ![vid3](https://i.imgur.com/0nwk5Cd.gif)<br/>
 ![vid4](https://i.imgur.com/93baMxr.gif)<br/>
-When you're done, make sure to move your pool filling to it's correct spot, reference the correct objects in the script, and you're good to go!<br/>
+When you're done, make sure to move your pool filling to its correct spot, reference the correct objects in the script, and you're good to go!<br/>
 ![Image 3-2](https://i.imgur.com/6wkpox9.png)<br/>
 ![Image 3-3](https://i.imgur.com/3g4eSVl.png)<br/>
 You should be able to click play and be able to endlessly jump off a diving board to try and hit water. If you don't end up doing so, just press J and retry.
