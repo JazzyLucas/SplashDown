@@ -1,6 +1,6 @@
 # SplashDown
-This tutorial is meant for absolutely new Unity developers, but it might carry some nice tips for intermediate users.
-The source code (Unity project files) is uploaded mainly for showcasing and asset verification, but anyone can use it however they'd like.
+This code-along is meant for absolutely new Unity developers, but it might carry some nice tips for intermediate users.
+The source code (Unity project files) will be uploaded mainly for showcasing and asset verification, but anyone can use it however they'd like.
 This readme will serve as full documentation on the step-by-step process of creating this game prototype.
 Contact JazzyLucas#0749 via Discord if you have any questions.
 
@@ -171,7 +171,62 @@ We'll call **GetInput()** in the Update method, and we'll actually move the Play
 ```
 Save your script (Ctrl+S) and make sure Unity is able to compile it without problems (Go back to the Unity editor and if it's looking normal then it's good). Drag your PlayerControl script onto your Player GameObject. Now, we're going to reference your Player GameObject in the PlayerControl script component. The way you do this is by dragging the entire Player GameObject onto the area that says "Player Object". It might be easier to see a quick gif of it being done:<br/>
 ![vid1](https://i.imgur.com/NsjOhgL.gif)<br/>
-Now, time for some action! Click the Play button located in the top middle of the Unity editor, use WASD to move your character, and watch him goooooo! Step 2 is complete!<br/>
+Now, time for some action! Click the Play button located in the top middle of the Unity editor, and you can now use WASD to move your character! Step 2 is complete!<br/>
 ![vid2](https://i.imgur.com/pI3P7v5.gif)<br/>
 
 ## Step 3: Diving Board and Pool
+This next step should serve as a neat challenge to get your more comfortable with moving and placing objects in Unity. I have made a few changes to the **SampleScene**. It should be fairly intuitive to understand what's going on just by comparing the scene's view with respective objects. I have outlined **Empty** GameObjects in the Heirarchy in red. I used these **Empty** GameObjects to parent both the Diving Board and the Pool for organizational purposes. I also parented our Camera Controller to the Player, this will allow the camera to follow everywhere the player goes. The "Diving Board Teleport Empty" will serve as **Transform** data when we need to teleport our player back up to the Diving Board. You might also notice a cube object over to the side: that's the Pool Filling. You should add a **Box Collider** component along with checking the "Is Trigger" for that object for later.<br/>
+![Image 3-0](https://i.imgur.com/IwAMchs.png)<br/>
+![Image 3-1](https://i.imgur.com/v6AkyYH.png)<br/>
+Let's create a new script called "SplashDetection". In this script we will teleport the player when they collide with the pool filler. It sounds simple, but let's get to the code. Here's what our Private Fields will look like:
+```C#
+    [SerializeField] private GameObject jumpPoint;
+    [SerializeField] private GameObject playerObject;
+    private Rigidbody playerRigidbody;
+```
+The jumpPoint will be what that "Diving Board Teleport Empty" that I created earlier. Here's some MonoBehaviour Callbacks that we'll be using:
+```C#
+    void Start()
+    {
+        playerRigidbody = playerObject.GetComponent<Rigidbody>();
+        goToJumpLocation();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown("j"))
+        {
+            goToJumpLocation();
+        }
+    }
+```
+And (before your Visual Studio editor yells at your for not knowing where our private goToJumpLocation() method is) let's code this public method:
+```C#
+    private void goToJumpLocation()
+    {
+        // Teleport the player to the jumpPoint
+        playerObject.transform.position = jumpPoint.transform.localPosition;
+        // Reset the player's rotation when they get to the jumpPoint
+        playerObject.transform.eulerAngles = Vector3.zero;
+        // Reset the player's velocity to 0 in all directions. Very Important!
+        playerRigidbody.velocity = Vector3.zero;
+        playerRigidbody.angularVelocity = Vector3.zero;
+    }
+```
+Now, we haven't made the pool filling fully functional quite yet. We need a Unity Method for when the player actually collides with it:
+```C#
+    private void OnTriggerEnter()
+    {
+        goToJumpLocation();
+    }
+```
+This should be everything for the SplashDetection script, but we'll want some better visuals for the pool filling. We can do so by assigning it a new **Material**. I made mine look like green jello. I'd recommend having some fun with this part. You can make some really cool visuals just using a single material.<br/>
+![vid3](https://i.imgur.com/0nwk5Cd.gif)<br/>
+![vid4](https://i.imgur.com/93baMxr.gif)<br/>
+When you're done, make sure to move your pool filling to it's correct spot, reference the correct objects in the script, and you're good to go!<br/>
+![Image 3-2](https://i.imgur.com/6wkpox9.png)<br/>
+![Image 3-3](https://i.imgur.com/3g4eSVl.png)<br/>
+You should be able to click play and be able to endlessly jump off a diving board to try and hit water. If you don't end up doing so, just press J and retry.
+This wraps up the first tutorial I've made so far for my code-alongs on GitHub. Though, there will be a 4th step for anyone who wants to continue with Unity.
+
+## Step 4: Moving Along
