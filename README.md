@@ -147,7 +147,7 @@ At runtime we'll get the **Rigidbody** from the Player so it's not necessary to 
 ```
 Next, we'll make a private method called **GetInput()** that returns void with the no parameters. Here's what we'll fill the **GetInput()** function with:
 ```C#
-    private void MovePlayer()
+    private void GetInput()
     {
         // Reset the vector each time we get input.
         input = Vector3.zero;
