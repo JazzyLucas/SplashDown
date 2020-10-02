@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SplashDetection : MonoBehaviour
@@ -8,6 +9,8 @@ public class SplashDetection : MonoBehaviour
 
     [SerializeField] private GameObject jumpPoint;
     [SerializeField] private GameObject playerObject;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private int currentScore = -1;
     private Rigidbody playerRigidbody;
 
     #endregion
@@ -25,6 +28,7 @@ public class SplashDetection : MonoBehaviour
         if(Input.GetKeyDown("j"))
         {
             goToJumpLocation();
+            currentScore = 0;
         }
     }
 
@@ -35,6 +39,8 @@ public class SplashDetection : MonoBehaviour
     private void OnTriggerEnter()
     {
         goToJumpLocation();
+        currentScore++;
+        updateScoreText();
     }
 
     #endregion
@@ -50,6 +56,13 @@ public class SplashDetection : MonoBehaviour
         // Reset the player's velocity to 0 in all directions. Very Important!
         playerRigidbody.velocity = Vector3.zero;
         playerRigidbody.angularVelocity = Vector3.zero;
+        // Update the score
+        updateScoreText();
+    }
+
+    private void updateScoreText()
+    {
+        scoreText.text = currentScore.ToString();
     }
 
     #endregion
