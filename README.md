@@ -287,7 +287,7 @@ If you're an absolute beginner:
 - Animations as well as the animation controller
 - Building projects with HTML5
 - Post Processing
-- The Unity Asset Store (thousands of free resources)
+- The Unity Asset Store (thousands of free resources)<br/>
 If you've done the above or you are a more advanced Unity user, then I suggest these:
 - Prefabs and using objects across scenes
 - Scriptable GameObjects (for holding data)
