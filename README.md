@@ -227,6 +227,5 @@ When you're done, make sure to move your pool filling to its correct spot, refer
 ![Image 3-2](https://i.imgur.com/6wkpox9.png)<br/>
 ![Image 3-3](https://i.imgur.com/3g4eSVl.png)<br/>
 You should be able to click play and be able to endlessly jump off a diving board to try and hit water. If you don't end up doing so, just press J and retry.
-This wraps up the first tutorial I've made so far for my code-alongs on GitHub. Though, there will be a 4th step for anyone who wants to continue with Unity.
 
 ## Step 4: Added Difficulty and Score
