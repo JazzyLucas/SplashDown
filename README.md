@@ -228,4 +228,68 @@ When you're done, make sure to move your pool filling to its correct spot, refer
 ![Image 3-3](https://i.imgur.com/3g4eSVl.png)<br/>
 You should be able to click play and be able to endlessly jump off a diving board to try and hit water. If you don't end up doing so, just press J and retry.
 
-## Step 4: Added Difficulty and Score
+## Step 4: Scoring System
+In this 4th step we're going to make a score/streak system. The first step to this is we need a User Interface (UI for short) for showing the score. Unity handles this with **Canvas** objects. We'll be creating just a **Text - TextMeshPro** object and Unity automatically creates a **Canvas** object as well as an **EventSystem** associated with it. You might have to import the resources for TextMeshPro during this (Unity should prompt you for it), and I highly recommend doing so. Change your text values to be similar to mine:<br/>
+![Image 4-0](https://i.imgur.com/3WYVl22.png)<br/>
+Next, we'll dive back into the SplashDetection script. We need to add a new serialized private field for our **Text - TextMeshPro** object. We'll also need a private integer to keep score. Visual Studio should automatically import the TMPro library at the top of your script.
+```C#
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private int currentScore = 0;
+```
+The first thing to do is make a private method for updating the score display. Here's what that would look like:
+```C#
+    private void updateScoreText()
+    {
+        scoreText.text = currentScore.ToString();
+    }
+```
+We can add the score update to the goToJumpLocation() method:
+```C#
+    private void goToJumpLocation()
+    {
+        // Teleport the player to the jumpPoint
+        playerObject.transform.position = jumpPoint.transform.localPosition;
+        // Reset the player's rotation when they get to the jumpPoint
+        playerObject.transform.eulerAngles = Vector3.zero;
+        // Reset the player's velocity to 0 in all directions. Very Important!
+        playerRigidbody.velocity = Vector3.zero;
+        playerRigidbody.angularVelocity = Vector3.zero;
+        // Update the score
+        updateScoreText();
+    }
+```
+We'll need to increment the score by 1 each time the player lands into the pool of water successfuly, but we'll reset the score when the player resets their jump. We can add the score incrementing in the OnTriggerEnter() method:
+```C#
+    private void OnTriggerEnter()
+    {
+        goToJumpLocation();
+        currentScore++;
+    }
+```
+And we can reset the score in the Update() method when the J key is pressed:
+```C#
+    private void Update()
+    {
+        if(Input.GetKeyDown("j"))
+        {
+            goToJumpLocation();
+            currentScore = 0;
+        }
+    }
+```
+Save your script, find your pool filling, and reference your score **Text - TextMeshPro** object. Your entire project should now be playable with a score. Just as a side note, you might need to go back into your SplashDetection script and configure your initial values for the currentScore integer depending on if you have any colliders surrounding your pool filling.
+
+## Step 5: Continuing
+This is where the tutorial ends, but I wanted to provide some pointers to helpful Unity techniques/areas to get into.
+If you're an absolute beginner:
+- Particle Systems (they're amazing and tons of fun)
+- Sounds
+- Animations as well as the animation controller
+- Building projects with HTML5
+- Post Processing
+- The Unity Asset Store (thousands of free resources)
+If you've done the above or you are a more advanced Unity user, then I suggest these:
+- Prefabs and using objects across scenes
+- Scriptable GameObjects (for holding data)
+- Object Pooling
+- Shaders with Unity URP, and HDRP
