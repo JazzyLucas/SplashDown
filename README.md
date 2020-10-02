@@ -294,3 +294,4 @@ If you've done the above or you are a more advanced Unity user, then I suggest t
 - Scriptable GameObjects (for holding data)
 - Object Pooling
 - Shaders with Unity URP, and HDRP
+- Multiplayer with Photon PUN
