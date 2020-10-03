@@ -262,8 +262,8 @@ We'll need to increment the score by 1 each time the player lands into the pool 
 ```C#
     private void OnTriggerEnter()
     {
-        goToJumpLocation();
         currentScore++;
+        goToJumpLocation();
     }
 ```
 And we can reset the score in the Update() method when the J key is pressed:
@@ -272,8 +272,8 @@ And we can reset the score in the Update() method when the J key is pressed:
     {
         if(Input.GetKeyDown("j"))
         {
-            goToJumpLocation();
             currentScore = 0;
+            goToJumpLocation();
         }
     }
 ```
