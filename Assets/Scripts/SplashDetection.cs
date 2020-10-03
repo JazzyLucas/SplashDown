@@ -27,8 +27,8 @@ public class SplashDetection : MonoBehaviour
     {
         if(Input.GetKeyDown("j"))
         {
+			currentScore = 0;
             goToJumpLocation();
-            currentScore = 0;
         }
     }
 
@@ -38,9 +38,8 @@ public class SplashDetection : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        goToJumpLocation();
         currentScore++;
-        updateScoreText();
+		goToJumpLocation();
     }
 
     #endregion
